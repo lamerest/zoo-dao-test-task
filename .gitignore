@@ -1,4 +1,6 @@
 __pycache__
+.github
+node_modules/
 .history
 .hypothesis/
 build/
