@@ -11,5 +11,5 @@ def isolate(fn_isolation):
 
 
 @pytest.fixture(scope="module")
-def token(Token, accounts):
-    return Token.deploy("Test Token", "TST", 18, 1e21, {'from': accounts[0]})
+def token(TestContractForZooDAO, accounts):
+    return TestContractForZooDAO.deploy("Test Token", "TST", 18, 1e21, [accounts[0], accounts[1], accounts[2], accounts[3]], {'from': accounts[0]})
