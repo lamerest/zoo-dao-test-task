@@ -1,7 +1,26 @@
 #!/usr/bin/python3
 
-from brownie import Token, accounts
+from brownie import TestContractForZooDAO, accounts, config
 
+initial_supply = 1e21 # 1000
+token_name = "ZooDAO Token"
+symbol = "ZDT"
+decimals = 18
 
 def main():
-    return Token.deploy("Test Token", "TST", 18, 1e21, {'from': accounts[0]})
+    whitelist = ['0x9Ac2Fa5e617663B9cF4E77af38bb89d02BD307c4', '0xd7067E6AcC2B703df74b7c83464c4dfB2Ee27d43', '0x84c59FeC3a0022d37eB56dfA6b8e98AC24853732']
+    account = accounts.add(config["wallets"]["from_key"])
+
+    overrides = {
+        'from': account
+    }
+
+    return TestContractForZooDAO.deploy(
+        token_name, 
+        symbol, 
+        decimals, 
+        initial_supply, 
+        whitelist, 
+        overrides, 
+        publish_source=True
+    )
