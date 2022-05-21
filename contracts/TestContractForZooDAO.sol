@@ -23,6 +23,8 @@ contract TestContractForZooDAO is ERC20 {
 	}
 
 	function burn(address account, uint256 amount) public {
+		require(msg.sender == account, 'You can`t burn not your funds');
+
 		_burn(account, amount);
 	}
 }
