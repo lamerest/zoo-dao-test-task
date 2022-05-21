@@ -8,18 +8,9 @@ contract TestContractForZooDAO is ERC20 {
 		string memory _name,
 		string memory _symbol,
 		uint256 _decimals,
-		uint256 _totalSupply,
-		address[] memory whitelist
+		uint256 _totalSupply
 	) public ERC20(_name, _symbol) {
-		for (uint256 i = 0; i < whitelist.length; i++) {
-			_mint(whitelist[i], _totalSupply / whitelist.length);
-		}
-
-		uint256 leftToMint = _totalSupply - totalSupply();
-
-		if (leftToMint > 0) {
-			_mint(msg.sender, leftToMint);
-		}
+		_mint(msg.sender, _totalSupply);
 	}
 
 	function burn(address account, uint256 amount) public {
